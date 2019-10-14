@@ -58,7 +58,7 @@ class EnumFieldValidationMixin:
             )
 
     def _validate_inital_value(self, value, model_instance):
-        if model_instance._state.adding and not value.initial:
+        if model_instance._state.adding and (not value or not value.initial):
             initial_choices = {
                 choice for choice in self.enum if choice.initial
             }
